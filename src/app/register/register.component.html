@@ -1,7 +1,7 @@
 <div class="container">
     {{ diagnostic }}
       <h1>Register</h1>
-      <form #registerForm="ngForm">
+      <form #registerForm="ngForm" (ngSubmit)="register()">
         <div class="form-group">
             <label for="email">Email</label>
             <input type="text" class="form-control" id="email" required
