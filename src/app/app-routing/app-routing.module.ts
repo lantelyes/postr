@@ -4,11 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth-guard.service';
 import { LoginComponent } from '../login/login.component'
 import { RegisterComponent } from '../register/register.component'
+import { AllComponent } from '../all/all.component'
 import { FeedComponent } from '../feed/feed.component'
 import { ProfileComponent } from '../profile/profile.component'
 
 
 const routes: Routes = [
+    {
+        path: 'all',
+        component: AllComponent
+    },
     {
         path: 'feed',
         component: FeedComponent,

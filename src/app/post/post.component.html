@@ -1,0 +1,13 @@
+<div class="card mb-5" style="width: 30rem;">
+    <div class="card-header">
+      <img src="{{ post.author.image }}" class="profile-image rounded float-right">
+      <h4 class="card-title">{{ post.author.username }}</h4>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ post.body }}</p>
+    </div>
+    <div class="card-footer text-muted">
+        {{ post.createdAt | date:'short' }} 
+        <i class="fa fa-star-o fa-lg float-right" aria-hidden="true"></i> 
+    </div>
+  </div>

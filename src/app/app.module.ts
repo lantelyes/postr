@@ -13,8 +13,12 @@ import { RegisterComponent } from './register/register.component';
 
 import { AuthenticationService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { UserService } from './user.service';
+import { PostService } from './post.service';
 import { FeedComponent } from './feed/feed.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AllComponent } from './all/all.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     FeedComponent,
-    ProfileComponent
+    ProfileComponent,
+    AllComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,9 @@ import { ProfileComponent } from './profile/profile.component';
     ToastModule.forRoot()
   ],
   providers: [AuthenticationService,
-              AuthGuard],
+              AuthGuard,
+              UserService,
+              PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
