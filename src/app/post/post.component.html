@@ -11,6 +11,14 @@
     </div>
     <div class="card-footer text-muted">
         {{ post.createdAt | date:'short' }} 
+        <button class="btn btn-primary" type="button" data-toggle="collapse" attr.data-target="#postComments{{ post.id }}" aria-expanded="false" aria-controls="postComments">
+            Comments
+          </button>
         <i class="fa fa-star-o fa-lg float-right" aria-hidden="true"></i> 
+    </div>
+    <div class="collapse" id="postComments{{ post.id }}">
+      <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      </div>
     </div>
   </div>
