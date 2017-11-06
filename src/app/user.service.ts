@@ -9,10 +9,11 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class UserService {
   constructor(private http: Http,
+              private authHttp: AuthHttp,
               private authService: AuthenticationService) { }
 
   getCurrent() {
-      return this.http.get(AppConfig.API_ENDPOINT + '/users', this.jwt()).map((response: Response) => response.json());
+      return this.authHttp.get(AppConfig.API_ENDPOINT + '/user', this.jwt()).map((response: Response) => response.json());
   }
 
   createUser(user: User) {
@@ -24,14 +25,16 @@ export class UserService {
 
 
   updateUser(user: User) {
-      return this.http.put(AppConfig.API_ENDPOINT + '/users', user, this.jwt()).map((response: Response) => response.json());
+      return this.authHttp.put(AppConfig.API_ENDPOINT + '/user', {user: user}, this.jwt()).map((response: Response) => response.json());
   }
 
   private jwt() {
       // create authorization header with jwt token
       let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let token = localStorage.getItem('id_token');
+
       if (currentUser && currentUser.token) {
-          let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+          let headers = new Headers({ 'Authorization': 'Bearer ' + token });
           return new RequestOptions({ headers: headers });
       }
   }

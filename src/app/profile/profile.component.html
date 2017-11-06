@@ -1,3 +1,25 @@
-<p>
-  profile works!
-</p>
+
+<div class="card mb-5" style="width: 30rem;">
+  <div class="card-header">
+    <img src="{{ user.image }}" class="profile-image rounded float-right">
+    <h4 class="card-title">{{ user.username }}</h4>
+  </div>
+  <div class="card-body">
+    <h5>Update your details here!</h5>
+    <div class="input-group">
+      <span class="input-group-addon" id="username">Username</span>
+      <input type="text" [(ngModel)]="userEdit.username" class="form-control" placeholder="{{ user.username }}">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="username">Email</span>
+      <input type="text" [(ngModel)]="userEdit.email" class="form-control" placeholder="{{ user.email }}">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="username">Password</span>
+      <input type="password" [(ngModel)]="userEdit.password" class="form-control" placeholder="Enter new password:">
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <button type="button" (click)="saveUser(userEdit)" class="btn btn-success float-right">Save updated details</button>
+  </div>
+</div>

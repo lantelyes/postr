@@ -7,10 +7,12 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/all">All Posts<span class="sr-only">(current)</span></a>
       <a *ngIf="this.authService.loggedIn()" class="nav-item nav-link" href="/feed">My Feed</a>
-      <a *ngIf="this.authService.loggedIn()" class="nav-item nav-link" href="/profile">Profile</a>
       <a *ngIf="this.authService.loggedIn()" class="nav-item nav-link" (click)="this.authService.logout()">Logout</a>
       <a *ngIf="!this.authService.loggedIn()" class="nav-item nav-link" href="/login">Login</a>
       <a *ngIf="!this.authService.loggedIn()" class="nav-item nav-link" href="/register">Register</a>
+      <a *ngIf="this.authService.loggedIn()" class="nav-item nav-link" href="/profile">{{ user.username }}
+        <img class="profile-nav-image rounded" src="{{ user.image }}">
+      </a>
     </div>
   </div>
 </nav>
