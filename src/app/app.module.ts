@@ -18,10 +18,13 @@ import { AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { PostService } from './post.service';
 import { ProfileService } from './profile.service';
+import { BroadcasterService } from './broadcaster.service';
 import { FeedComponent } from './feed/feed.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AllComponent } from './all/all.component';
 import { PostComponent } from './post/post.component';
+import { NewpostComponent } from './newpost/newpost.component';
+import { ProfileviewComponent } from './profileview/profileview.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { PostComponent } from './post/post.component';
     FeedComponent,
     ProfileComponent,
     AllComponent,
-    PostComponent
+    PostComponent,
+    NewpostComponent,
+    ProfileviewComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import { PostComponent } from './post/post.component';
               UserService,
               ProfileService,
               PostService,
+              BroadcasterService,
               {
                 provide: AuthHttp,
                 useFactory: authHttpServiceFactory,

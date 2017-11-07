@@ -23,6 +23,13 @@ export class UserService {
     
   }
 
+  followUser(username: string) {
+    return this.authHttp.post(AppConfig.API_ENDPOINT + '/profiles/' + username + '/follow', this.jwt()).map((response: Response) => response.json());
+  }
+
+  unfollowUser(username: string) {
+    return this.authHttp.delete(AppConfig.API_ENDPOINT + '/profiles/' + username + '/follow', this.jwt()).map((response: Response) => response.json());
+  }
 
   updateUser(user: User) {
       return this.authHttp.put(AppConfig.API_ENDPOINT + '/user', {user: user}, this.jwt()).map((response: Response) => response.json());

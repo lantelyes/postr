@@ -1,24 +1,71 @@
 <div class="card mb-5" style="width: 30rem;">
     <div class="card-header">
       <img src="{{ post.author.image }}" class="profile-image rounded float-right">
-      <h4 class="card-title">{{ post.author.username }}   
-        <button *ngIf="!profile.following" type="button" class="btn btn-secondary follow-button float-right">Follow</button>
-        <button *ngIf="profile.following" type="button" class="btn btn-secondary follow-button float-right">Unfollow</button>
+      <h4 class="card-title text-center">
+          <button *ngIf="isPostOwner()" class="btn btn-info post-button float-left" (click)="deletePost()">
+            <i class="fa fa-lg fa-trash-o" aria-hidden="true"></i>
+          </button>
+          <button *ngIf="isPostOwner()" class="btn btn-info post-button float-left" (click)="toggleEditPost()">
+            <i class="fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
+          </button>
+          <a [routerLink]="['/profileview']" [queryParams]="{username: post.author.username}">
+              {{ post.author.username }}   
+          </a>
+        <button (click)="follow(post.author.username)" *ngIf="!profile.following" type="button" class="btn btn-secondary post-button float-right">Follow</button>
+        <button (click)="unfollow(post.author.username)" *ngIf="profile.following" type="button" class="btn btn-secondary post-button float-right">Unfollow</button>
       </h4>
     </div>
     <div class="card-body">
-      <p class="card-text">{{ post.body }}</p>
+      <p class="card-text text-center">
+        <textarea placeholder="{{post.body}}" *ngIf="post.isEditing" [(ngModel)]="post.editBody" class="form-control" rows="5"></textarea>
+        <span *ngIf="!post.isEditing">
+            {{ post.body }}
+        </span>
+      </p>
+      <p *ngIf="!post.isEditing" class="text-muted post-date float-right">
+          - {{ post.createdAt | date:'short' }} 
+      </p>
+      <button *ngIf="post.isEditing" (click)="updatePost()" class="btn btn-primary float-right" type="button">
+          Update
+      </button>
     </div>
     <div class="card-footer text-muted">
-        {{ post.createdAt | date:'short' }} 
-        <button class="btn btn-primary" type="button" data-toggle="collapse" attr.data-target="#postComments{{ post.id }}" aria-expanded="false" aria-controls="postComments">
-            Comments
+      <button class="btn btn-primary" type="button" data-toggle="collapse" attr.data-target="#postComments{{ post.id }}" aria-expanded="false" aria-controls="postComments">
+          {{ post.comments.length }} Comments
+        </button>
+        <div class="float-right">
+          <button *ngIf="!post.favorited" (click)="favoritePost()" type="button" class="btn btn-warning">
+            <i class="fa fa-star-o fa-lg" aria-hidden="true"></i> 
+            {{ post.favoritesCount }}
           </button>
-        <i class="fa fa-star-o fa-lg float-right" aria-hidden="true"></i> 
+          <button *ngIf="post.favorited"  (click)="unfavoritePost()" type="button" class="btn btn-warning">
+              <i class="fa fa-star fa-lg" aria-hidden="true"></i> 
+              {{ post.favoritesCount }}
+          </button>
+        </div>
     </div>
     <div class="collapse" id="postComments{{ post.id }}">
-      <div class="card card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      <div class="card-header">
+        New Comment
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <textarea [(ngModel)]="commentBody" class="form-control" rows="5"></textarea>
+        </p>
+      </div>
+      <div class="card-footer">
+          <button (click)="addComment()" class="btn btn-primary" type="button">
+            Submit
+          </button>
+      </div>
+      <div *ngFor="let comment of post.comments" class="card card-body">
+        {{ comment.body }}
+        <div class="float-right">
+          - {{ comment.author.username }}
+          <button *ngIf="isCommentOwner(comment.author.username)" class="btn btn-info float-right" (click)="deleteComment(comment.id)">
+              <i class="fa fa-lg fa-trash-o" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -7,9 +7,14 @@ import { RegisterComponent } from '../register/register.component'
 import { AllComponent } from '../all/all.component'
 import { FeedComponent } from '../feed/feed.component'
 import { ProfileComponent } from '../profile/profile.component'
+import { ProfileviewComponent } from '../profileview/profileview.component'
 
 
 const routes: Routes = [
+    {
+        path: '',
+        component: LoginComponent
+    },  
     {
         path: 'all',
         component: AllComponent
@@ -31,7 +36,10 @@ const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent,
-        
+    },
+    {
+        path: 'profileview',
+        component: ProfileviewComponent,
     }
 ];
 

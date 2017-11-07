@@ -12,6 +12,35 @@
   }
 
   .profile-nav-image {
-      width: 20px;
-      height: 20px;
+    width: 20px;
+    height: 20px;
   }
+
+.profile-image {
+    height:40px;
+    width:40px;
+}
+
+.post-button {
+    height:40px;
+    margin-right: 10px;
+}
+
+.post-date {
+    margin-bottom: 0px;
+}
+
+.speech-bubble {
+    background-color: #f8f8f8;
+    border: 1px solid #c8c8c8;
+    border-radius: 5px;
+    width: 110px;
+    text-align: center;
+    padding: 20px;
+    position: absolute;
+}
+
+.profile-edit-button {
+    width: 100px;
+}
+

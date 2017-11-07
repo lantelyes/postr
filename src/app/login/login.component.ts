@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     .subscribe(response => {
           // login successful
           this.authService.storeToken(response, this.user)
-          this.router.navigate(['/feed']);
+          this.router.navigate(['/all']);
         }, error => {
           // login failed
 

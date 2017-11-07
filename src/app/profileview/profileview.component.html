@@ -1,0 +1,25 @@
+<div class="card mb-5" style="width: 30rem;">
+    <div class="card-header">
+      <img src="{{ profile.image }}" class="profile-image rounded float-right">
+      <h4 class="card-title text-center">{{ profile.username }}</h4>
+    </div>
+    <div class="card-body">
+      <table class="table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Following</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{profile.username}}</td>
+              <td>{{profile.email}}</td>
+              <td>{{profile.following}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  
