@@ -26,7 +26,7 @@ export class AllComponent implements OnInit {
   }
 
   refreshPosts() {
-    this.postService.getAllPosts().subscribe(response => {
+    this.postService.getAllPosts(0).subscribe(response => {
       this.posts = response.posts;
     }, error => {
       console.log(error);

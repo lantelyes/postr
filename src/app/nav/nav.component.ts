@@ -26,11 +26,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userService.getCurrent().subscribe(response => {
-      this.user = response.user;
-    }, error => {
-      console.log(error);
-    });
+    this.userService.updateCurrentUser();
 
 
   }

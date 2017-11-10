@@ -12,8 +12,12 @@ export class UserService {
               private authHttp: AuthHttp,
               private authService: AuthenticationService) { }
 
-  getCurrent() {
-      return this.authHttp.get(AppConfig.API_ENDPOINT + '/user', this.jwt()).map((response: Response) => response.json());
+  public currentUser: User = new User();
+
+  updateCurrentUser() {
+      return this.authHttp.get(AppConfig.API_ENDPOINT + '/user', this.jwt()).map((response: Response) => {
+          this.currentUser = response.json().user;
+      });
   }
 
   createUser(user: User) {

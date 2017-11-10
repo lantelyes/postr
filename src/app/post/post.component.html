@@ -11,8 +11,8 @@
           <a [routerLink]="['/profileview']" [queryParams]="{username: post.author.username}">
               {{ post.author.username }}   
           </a>
-        <button (click)="follow(post.author.username)" *ngIf="!profile.following" type="button" class="btn btn-secondary post-button float-right">Follow</button>
-        <button (click)="unfollow(post.author.username)" *ngIf="profile.following" type="button" class="btn btn-secondary post-button float-right">Unfollow</button>
+        <button (click)="follow(post.author.username)" *ngIf="!post.author.following" type="button" class="btn btn-secondary post-button float-right">Follow</button>
+        <button (click)="unfollow(post.author.username)" *ngIf="post.author.following" type="button" class="btn btn-secondary post-button float-right">Unfollow</button>
       </h4>
     </div>
     <div class="card-body">
@@ -30,8 +30,8 @@
       </button>
     </div>
     <div class="card-footer text-muted">
-      <button class="btn btn-primary" type="button" data-toggle="collapse" attr.data-target="#postComments{{ post.id }}" aria-expanded="false" aria-controls="postComments">
-          {{ post.comments.length }} Comments
+      <button class="btn btn-primary" type="button" (click)="refreshComments()" data-toggle="collapse" attr.data-target="#postComments{{ post.id }}" aria-expanded="false" aria-controls="postComments">
+          Comments
         </button>
         <div class="float-right">
           <button *ngIf="!post.favorited" (click)="favoritePost()" type="button" class="btn btn-warning">

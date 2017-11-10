@@ -12,8 +12,8 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
 
 
-  user: User = new User();
-  userEdit: User = new User();
+  user: User = this.userService.currentUser;
+  userEdit: User = Object.assign({}, this.user);
 
   saveUser(user: User) {
     this.userService.updateUser(user).subscribe(response => {
@@ -25,12 +25,7 @@ export class ProfileComponent implements OnInit {
   }
 
   refreshUser() {
-    this.userService.getCurrent().subscribe(response => {
-      this.user = response.user;
-      this.userEdit = response.user;
-    }, error => {
-      console.log(error);
-    });
+    this.userService.updateCurrentUser();
   }
 
 

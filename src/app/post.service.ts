@@ -11,8 +11,8 @@ export class PostService {
 
     constructor(private authHttp: AuthHttp) { }
 
-    getAllPosts() {
-        return this.authHttp.get(AppConfig.API_ENDPOINT + '/posts', this.jwt()).map((response: Response) => response.json());
+    getAllPosts(offset: number) {
+        return this.authHttp.get(AppConfig.API_ENDPOINT + '/posts' +'?limit=' + AppConfig.POSTS_PER_PAGE + '&offset=' + offset, this.jwt()).map((response: Response) => response.json());
     }
 
     getFeed() {

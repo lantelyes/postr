@@ -16,7 +16,7 @@ export class NewpostComponent implements OnInit {
               private broadcasterService: BroadcasterService) { }
 
   body: string;
-  user: User = new User();
+  user: User = this.userService.currentUser;
 
   submitPost() {
     this.postService.createPost(this.body).subscribe(response => {
@@ -27,11 +27,7 @@ export class NewpostComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getCurrent().subscribe(response => {
-      this.user = response.user;
-    }, error => {
-      console.log(error);
-    });
+
   }
 
 }

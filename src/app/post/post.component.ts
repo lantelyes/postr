@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { BroadcasterService } from '../broadcaster.service';
 import { User } from '../models/user.model';
 import { Profile } from '../models/profile.model';
+import { Post } from '../models/post.model';
 
 @Component({
   selector: 'app-post',
@@ -19,29 +20,16 @@ export class PostComponent implements OnInit {
               private postService: PostService,
               private broadcasterService: BroadcasterService) { }
 
-  @Input('post') post: Object;
+  @Input('post') post: Post;
   @Input('author') author: string;
 
   profile: Profile = new Profile();
-  user: User = new User();
+  user: User = this.userService.currentUser;
   commentBody: string = "";
 
   ngOnInit() {
 
     this.post['comments'] = [];
-
-    this.refreshComments();
-    this.profileService.getProfile(this.author).subscribe(response => {
-      this.profile = response.profile;
-    }, error => {
-      console.log(error);
-    });
-
-    this.userService.getCurrent().subscribe(response => {
-      this.user = response.user;
-    }, error => {
-      console.log(error);
-    });
   }
 
   isPostOwner() {
@@ -54,7 +42,7 @@ export class PostComponent implements OnInit {
 
   follow(username: string) {
     this.userService.followUser(username).subscribe(response => {
-      this.profile.following = true;
+      this.post.author.following = true;
     }, error => {
       console.log(error);
     })
@@ -62,7 +50,7 @@ export class PostComponent implements OnInit {
 
   unfollow(username: string) {
     this.userService.unfollowUser(username).subscribe(response => {
-      this.profile.following = false;
+      this.post.author.following = false;
     }, error => {
       console.log(error);
     })
